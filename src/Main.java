@@ -12,10 +12,5 @@ public class Main {
         runtime.addPredefinedObject();
         runtime.eval(new FileReader("assets/script.js"));
         runtime.runEventLoop();
-
-        JSRuntime runtime2 = new JSRuntime(engine);
-        runtime2.addPredefinedObject();
-        runtime2.eval(new FileReader("assets/script2.js"));
-        runtime2.runEventLoop();
     }
 }
