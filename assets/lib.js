@@ -1,6 +1,6 @@
-// import os
+// import eventLoop
 
 function setTimeout(func, time) {
-    return os.setTimeout(func, time);
+    return eventLoop.setTimeout(func, time);
 }
 
