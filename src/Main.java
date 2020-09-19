@@ -5,6 +5,8 @@ import java.io.FileReader;
 public class Main {
     public static void main(String[] args) throws Exception {
         ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
+        JS.addPredefinedObject(engine);
         engine.eval(new FileReader("assets/script.js"));
+        JS.runEventLoop(engine);
     }
 }

@@ -1,7 +1,11 @@
-var os = Java.type("OS");
-var console = Java.type("Console");
-var setTimeout = os.setTimeout;
-
-os.setTimeout(function() {
-  console.log("Hello world")
+setTimeout(function() {
+  print("Hello world 2s")
 }, 2000);
+
+setTimeout(function() {
+  print("Hello world 4s")
+}, 4000);
+
+setTimeout(function() {
+  print("Hello world 5s")
+}, 6000);
