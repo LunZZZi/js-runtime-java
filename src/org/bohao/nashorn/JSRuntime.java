@@ -1,31 +1,30 @@
 package org.bohao.nashorn;
 
-import javax.script.Bindings;
-import javax.script.ScriptEngine;
-import javax.script.ScriptException;
+import javax.script.*;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
 public class JSRuntime {
     private final ScriptEngine engine;
-    private final Bindings binding;
 
     public JSRuntime(ScriptEngine engine) {
         this.engine = engine;
-        this.binding = this.engine.createBindings();
+        ScriptContext context = new SimpleScriptContext();
+        context.setBindings(this.engine.createBindings(), ScriptContext.ENGINE_SCOPE);
+        this.engine.setContext(context);
     }
 
     public void eval(FileReader fileReader) throws ScriptException {
-        this.engine.eval(fileReader, this.binding);
+        this.engine.eval(fileReader);
     }
 
     public void addPredefinedObject() throws FileNotFoundException, ScriptException {
-        this.binding.put("os", new OS());
-        this.engine.eval(new FileReader("assets/lib.js"), this.binding);
+        this.engine.put("os", new OS());
+        this.engine.eval(new FileReader("assets/lib.js"));
     }
 
     public void runEventLoop() throws InterruptedException {
-        OS os = (OS) this.binding.get("os");
+        OS os = (OS) this.engine.get("os");
         while (!os.timerQueue.isEmpty()) {
             TimerTask task = os.timerQueue.poll();
             long currentTime = System.currentTimeMillis();
