@@ -22,6 +22,7 @@ public class JSRuntime {
 
     public void addPredefinedObject() throws FileNotFoundException, ScriptException {
         this.engine.put("eventLoop", this.eventLoop);
+        this.engine.put("fs", new FS(this.eventLoop));
         this.engine.eval(new FileReader("assets/lib.js"));
     }
 
