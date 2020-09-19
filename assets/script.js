@@ -1,11 +1,16 @@
+var count = 0;
+
 setTimeout(function() {
-  print("Hello world 2s")
+  count++;
+  print(count)
 }, 2000);
 
 setTimeout(function() {
-  print("Hello world 4s")
+  count++;
+  print(count)
 }, 4000);
 
 setTimeout(function() {
-  print("Hello world 5s")
+  count++;
+  print(count)
 }, 6000);
